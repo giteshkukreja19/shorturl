@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShortLink - URL Shortener</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">ShortLink<span>.</span></div>
+        <a href="#dashboard">Dashboard</a>
+    </nav>
+
+    <main class="container">
+        <section class="hero">
+            <div class="tag">SIMPLE URL SHORTENER</div>
+            <h1>Shorten your links.<br><span>Share them anywhere.</span></h1>
+            <p>Convert long URLs into short, clean and shareable links.</p>
+
+            <div class="shortener-box">
+                <label for="urlInput">Enter your long URL</label>
+                <div class="input-group">
+                    <input type="url" id="urlInput"
+                           placeholder="https://example.com/your-long-url">
+                    <button id="shortenBtn" onclick="shortenURL()">Shorten URL</button>
+                </div>
+                <p id="errorMessage" class="error" role="alert"></p>
+
+                <div id="result" class="result hidden">
+                    <p>Your shortened URL</p>
+                    <div class="result-link">
+                        <a id="shortURL" href="#" target="_blank"
+                           rel="noopener noreferrer"></a>
+                        <button onclick="copyURL()">Copy</button>
+                    </div>
+                    <div class="qr-section">
+                        <img id="qrImage" alt="QR Code">
+                        <a id="downloadQR" href="#" download="shortlink-qr.png">
+                            Download QR Code
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="features">
+            <div class="feature-card">
+                <h3>Quick &amp; Easy</h3>
+                <p>Generate short links within seconds.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Click Analytics</h3>
+                <p>Monitor how many times your links are opened.</p>
+            </div>
+            <div class="feature-card">
+                <h3>QR Codes</h3>
+                <p>Create downloadable QR codes for your links.</p>
+            </div>
+        </section>
+
+        <section id="dashboard" class="dashboard">
+            <h2>Link Dashboard</h2>
+            <p class="subtitle">Your recently created short links</p>
+            <div class="stats">
+                <div class="stat-card">
+                    <p>Total Links</p>
+                    <h2 id="totalLinks">0</h2>
+                </div>
+                <div class="stat-card">
+                    <p>Total Clicks</p>
+                    <h2 id="totalClicks">0</h2>
+                </div>
+            </div>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr><th>Original URL</th><th>Short URL</th><th>Clicks</th></tr>
+                    </thead>
+                    <tbody id="linksTable">
+                        <tr><td colspan="3">Loading links...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <footer><p>ShortLink &copy; 2026 | Built with Python Flask</p></footer>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
